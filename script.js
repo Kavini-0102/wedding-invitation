@@ -1,4 +1,136 @@
 // ============================================================
+// MANDALA GENERATOR
+// Draws a lace-like radial medallion into an <svg viewBox="0 0 300 300">.
+// Used for the thorana gate panels and the four corner medallions.
+// ============================================================
+function buildMandala(svg, opts) {
+  opts = opts || {};
+  const rings = opts.rings || 4;
+  const basePetals = opts.petalsPerRing || 10;
+  const rMax = opts.rMax || 130;
+  const ns = "http://www.w3.org/2000/svg";
+  const cx = 150, cy = 150;
+
+  for (let ring = 1; ring <= rings; ring++) {
+    const r = (rMax / rings) * ring;
+
+    const circle = document.createElementNS(ns, "circle");
+    circle.setAttribute("cx", cx);
+    circle.setAttribute("cy", cy);
+    circle.setAttribute("r", r);
+    circle.setAttribute("fill", "none");
+    circle.setAttribute("stroke", "var(--gold-dim)");
+    circle.setAttribute("stroke-width", "0.75");
+    circle.setAttribute("opacity", "0.45");
+    svg.appendChild(circle);
+
+    const petals = basePetals + ring * 3;
+    for (let i = 0; i < petals; i++) {
+      const angle = (i / petals) * Math.PI * 2;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy + Math.sin(angle) * r;
+      const size = 5 + ring * 1.4;
+      const deg = (angle * 180) / Math.PI + 90;
+
+      const petal = document.createElementNS(ns, "path");
+      const d = `M ${x} ${y - size} Q ${x + size} ${y} ${x} ${y + size} Q ${x - size} ${y} ${x} ${y - size} Z`;
+      petal.setAttribute("d", d);
+      petal.setAttribute("transform", `rotate(${deg} ${x} ${y})`);
+      petal.setAttribute("fill", "none");
+      petal.setAttribute("stroke", ring % 2 === 0 ? "var(--gold)" : "var(--gold-soft)");
+      petal.setAttribute("stroke-width", "1");
+      petal.setAttribute("opacity", 0.5 + ring * 0.08);
+      svg.appendChild(petal);
+    }
+  }
+
+  const dot = document.createElementNS(ns, "circle");
+  dot.setAttribute("cx", cx);
+  dot.setAttribute("cy", cy);
+  dot.setAttribute("r", 4);
+  dot.setAttribute("fill", "var(--gold)");
+  svg.appendChild(dot);
+}
+
+// ============================================================
+// THORANA GATE — opening entrance sequence
+// Twin lattice doors, each bearing half a mandala at the seam,
+// swing open on load (or on tap) to reveal the invitation.
+// Respects prefers-reduced-motion.
+// ============================================================
+(function gateSequence() {
+  const overlay = document.getElementById("gateOverlay");
+  if (!overlay) return;
+
+  const enterBtn = document.getElementById("gateEnter");
+  const svgLeft = document.getElementById("gateMandalaLeft");
+  const svgRight = document.getElementById("gateMandalaRight");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduceMotion) {
+    overlay.classList.add("hidden");
+    return;
+  }
+
+  document.body.classList.add("gate-active");
+  if (svgLeft) buildMandala(svgLeft, { rings: 4, petalsPerRing: 10, rMax: 130 });
+  if (svgRight) buildMandala(svgRight, { rings: 4, petalsPerRing: 10, rMax: 130 });
+
+  function openGate() {
+    overlay.classList.add("opening");
+    document.body.classList.remove("gate-active");
+    setTimeout(() => overlay.classList.add("hidden"), 1600);
+  }
+
+  const autoTimer = setTimeout(openGate, 1600);
+  if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+      clearTimeout(autoTimer);
+      openGate();
+    });
+  }
+})();
+
+// ============================================================
+// CORNER MEDALLIONS
+// ============================================================
+(function buildCornerMedallions() {
+  document.querySelectorAll(".corner-motif svg").forEach((svg) => {
+    buildMandala(svg, { rings: 2, petalsPerRing: 8, rMax: 120 });
+  });
+})();
+
+// ============================================================
+// SCROLL REVEAL
+// Sections and event cards fade/slide in as they enter view.
+// ============================================================
+(function scrollReveal() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const targets = document.querySelectorAll(".section, .event-card");
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((t) => t.classList.add("in-view"));
+    return;
+  }
+
+  targets.forEach((t) => t.classList.add("reveal"));
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  targets.forEach((t) => io.observe(t));
+})();
+
+// ============================================================
 // COUNTDOWN TIMER — to 24 Dec 2026
 // ============================================================
 const WEDDING_DATE = new Date("2026-12-24T10:00:00+05:30").getTime();

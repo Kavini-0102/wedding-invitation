@@ -11,8 +11,8 @@
   .gen-wrap{ max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
   .gen-wrap .field{ margin-bottom: 18px; }
   .gen-result{
-    margin-top: 28px; padding: 20px; background:#fff;
-    border: 1px solid rgba(201,162,39,0.35); border-radius: 6px;
+    margin-top: 28px; padding: 20px; background: var(--night-2);
+    border: 1px solid rgba(212,175,55,0.35); border-radius: 6px;
     word-break: break-all; font-size: 14px; display:none;
   }
   .gen-result.show{ display:block; }
@@ -22,17 +22,22 @@
     font-size:13px; letter-spacing:.1em; text-transform:uppercase;
     padding:12px 20px; border-radius:4px;
   }
-  .gen-result .link-line{ font-family: monospace; background: var(--ivory); padding:10px; border-radius:4px; }
+  .gen-result .link-line{ font-family: monospace; background: var(--night); color: var(--ink); padding:10px; border-radius:4px; }
   .copy-btn{
     margin-top:10px; font-family: var(--utility); font-size:12px;
     letter-spacing:.1em; text-transform:uppercase; background:none;
-    border:1px solid var(--maroon); color:var(--maroon); padding:8px 14px;
+    border:1px solid var(--gold); color:var(--gold-soft); padding:8px 14px;
     border-radius:4px; cursor:pointer;
   }
-  .note{ font-size:14px; opacity:.7; margin-top:24px; }
+  .note{ font-size:14px; color: var(--ink); opacity:.6; margin-top:24px; }
 </style>
 </head>
 <body>
+
+<div class="corner-motif corner-tl" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
+<div class="corner-motif corner-tr" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
+<div class="corner-motif corner-bl" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
+<div class="corner-motif corner-br" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
 
 <div class="gen-wrap">
   <p class="section-eyebrow">Private Tool — Not For Guests</p>
@@ -82,6 +87,54 @@
 </div>
 
 <script>
+  // Small self-contained copy of the mandala generator used on the main
+  // site (see script.js) — kept local so this private page has no
+  // dependency on the guest-facing RSVP logic in script.js.
+  function buildMandala(svg, opts) {
+    opts = opts || {};
+    const rings = opts.rings || 2;
+    const basePetals = opts.petalsPerRing || 8;
+    const rMax = opts.rMax || 120;
+    const ns = "http://www.w3.org/2000/svg";
+    const cx = 150, cy = 150;
+    for (let ring = 1; ring <= rings; ring++) {
+      const r = (rMax / rings) * ring;
+      const circle = document.createElementNS(ns, "circle");
+      circle.setAttribute("cx", cx);
+      circle.setAttribute("cy", cy);
+      circle.setAttribute("r", r);
+      circle.setAttribute("fill", "none");
+      circle.setAttribute("stroke", "var(--gold-dim)");
+      circle.setAttribute("stroke-width", "0.75");
+      circle.setAttribute("opacity", "0.45");
+      svg.appendChild(circle);
+      const petals = basePetals + ring * 3;
+      for (let i = 0; i < petals; i++) {
+        const angle = (i / petals) * Math.PI * 2;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        const size = 5 + ring * 1.4;
+        const deg = (angle * 180) / Math.PI + 90;
+        const petal = document.createElementNS(ns, "path");
+        const d = `M ${x} ${y - size} Q ${x + size} ${y} ${x} ${y + size} Q ${x - size} ${y} ${x} ${y - size} Z`;
+        petal.setAttribute("d", d);
+        petal.setAttribute("transform", `rotate(${deg} ${x} ${y})`);
+        petal.setAttribute("fill", "none");
+        petal.setAttribute("stroke", ring % 2 === 0 ? "var(--gold)" : "var(--gold-soft)");
+        petal.setAttribute("stroke-width", "1");
+        petal.setAttribute("opacity", 0.5 + ring * 0.08);
+        svg.appendChild(petal);
+      }
+    }
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", cx);
+    dot.setAttribute("cy", cy);
+    dot.setAttribute("r", 4);
+    dot.setAttribute("fill", "var(--gold)");
+    svg.appendChild(dot);
+  }
+  document.querySelectorAll(".corner-motif svg").forEach((svg) => buildMandala(svg));
+
   const form = document.getElementById("genForm");
   const result = document.getElementById("genResult");
   const linkLine = document.getElementById("linkLine");
@@ -103,7 +156,7 @@
 
     const message =
       `Dear ${guestName}, 💛\n\n` +
-      `Umesha & Waruna joyfully invite you to their wedding on 24th December 2026!\n\n` +
+      `Umesha & Waruna joyfully invite you to their wedding on 24th December 2026 at Fongfa Regency, Ganemulla!\n\n` +
       `View your invitation and RSVP here:\n${personalizedUrl}`;
 
     linkLine.textContent = personalizedUrl;
