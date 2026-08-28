@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invite Link Generator — Umesha &amp; Waruna</title>
+<meta name="robots" content="noindex, nofollow" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=EB+Garamond&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .gen-wrap{ max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
+  .gen-wrap .field{ margin-bottom: 18px; }
+  .gen-result{
+    margin-top: 28px; padding: 20px; background:#fff;
+    border: 1px solid rgba(201,162,39,0.35); border-radius: 6px;
+    word-break: break-all; font-size: 14px; display:none;
+  }
+  .gen-result.show{ display:block; }
+  .gen-result a.wa-btn{
+    display:inline-block; margin-top:14px; text-decoration:none;
+    background:#25D366; color:#fff; font-family: var(--utility);
+    font-size:13px; letter-spacing:.1em; text-transform:uppercase;
+    padding:12px 20px; border-radius:4px;
+  }
+  .gen-result .link-line{ font-family: monospace; background: var(--ivory); padding:10px; border-radius:4px; }
+  .copy-btn{
+    margin-top:10px; font-family: var(--utility); font-size:12px;
+    letter-spacing:.1em; text-transform:uppercase; background:none;
+    border:1px solid var(--maroon); color:var(--maroon); padding:8px 14px;
+    border-radius:4px; cursor:pointer;
+  }
+  .note{ font-size:14px; opacity:.7; margin-top:24px; }
+</style>
+</head>
+<body>
+
+<div class="gen-wrap">
+  <p class="section-eyebrow">Private Tool — Not For Guests</p>
+  <h1 class="section-title" style="font-size:32px;">Create a Guest's Invite Link</h1>
+  <p class="section-copy" style="margin-bottom:0;">
+    Fill this in for each person or family on your list, then tap the green button to
+    open WhatsApp with the message ready to send.
+  </p>
+
+  <form id="genForm" style="margin-top:32px;">
+    <div class="field">
+      <label for="siteUrl">Your Deployed Site URL</label>
+      <input type="text" id="siteUrl" placeholder="https://wedding-invitation.vercel.app" required />
+    </div>
+    <div class="field">
+      <label for="guestNameInput">Guest / Family Name</label>
+      <input type="text" id="guestNameInput" placeholder="e.g. Kavindi Perera" required />
+    </div>
+    <div class="field">
+      <label for="inviteType">Invite As</label>
+      <select id="inviteType" required>
+        <option value="one">Just Them (1 guest)</option>
+        <option value="two">Them &amp; Partner (2 guests)</option>
+        <option value="family">Family (3+ guests)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="phone">Guest's WhatsApp Number <span class="optional">(optional — include country code, digits only)</span></label>
+      <input type="text" id="phone" placeholder="e.g. 94771234567" />
+    </div>
+    <button type="submit" class="submit-btn" style="width:auto; padding:14px 28px;">Generate Link</button>
+  </form>
+
+  <div class="gen-result" id="genResult">
+    <p><strong>Personalized invite link:</strong></p>
+    <p class="link-line" id="linkLine"></p>
+    <button class="copy-btn" id="copyBtn">Copy Link</button>
+    <br>
+    <a href="#" id="waBtn" class="wa-btn" target="_blank" rel="noopener">Open in WhatsApp →</a>
+  </div>
+
+  <p class="note">
+    Tip: keep a spreadsheet with one row per guest (Name, Type, Phone) and generate all your
+    links in one sitting — each opens the invitation already personalized with their name and
+    seat count pre-selected.
+  </p>
+</div>
+
+<script>
+  const form = document.getElementById("genForm");
+  const result = document.getElementById("genResult");
+  const linkLine = document.getElementById("linkLine");
+  const waBtn = document.getElementById("waBtn");
+  const copyBtn = document.getElementById("copyBtn");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let siteUrl = document.getElementById("siteUrl").value.trim().replace(/\/$/, "");
+    const guestName = document.getElementById("guestNameInput").value.trim();
+    const inviteType = document.getElementById("inviteType").value;
+    const phone = document.getElementById("phone").value.replace(/\D/g, "");
+
+    if (!/^https?:\/\//i.test(siteUrl)) siteUrl = "https://" + siteUrl;
+
+    const personalizedUrl =
+      `${siteUrl}/?to=${encodeURIComponent(guestName)}&type=${inviteType}`;
+
+    const message =
+      `Dear ${guestName}, 💛\n\n` +
+      `Umesha & Waruna joyfully invite you to their wedding on 24th December 2026!\n\n` +
+      `View your invitation and RSVP here:\n${personalizedUrl}`;
+
+    linkLine.textContent = personalizedUrl;
+
+    const waLink = phone
+      ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+      : `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+    waBtn.href = waLink;
+    result.classList.add("show");
+  });
+
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(linkLine.textContent);
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Link"), 1500);
+    } catch {
+      alert("Copy failed — please select and copy the link manually.");
+    }
+  });
+</script>
+
+</body>
+</html>

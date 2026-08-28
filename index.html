@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Umesha &amp; Waruna — Wedding Invitation</title>
+<meta name="description" content="You are cordially invited to the wedding of Umesha Madumini and Waruna Wakishta — December 24, 2026." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- decorative fixed corner motifs -->
+<div class="corner-motif corner-tl" aria-hidden="true"></div>
+<div class="corner-motif corner-tr" aria-hidden="true"></div>
+<div class="corner-motif corner-bl" aria-hidden="true"></div>
+<div class="corner-motif corner-br" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-pattern" aria-hidden="true"></div>
+
+  <p class="eyebrow">The Wedding Of</p>
+
+  <!-- signature element: pahana / traditional oil lamp -->
+  <div class="lamp" aria-hidden="true">
+    <svg viewBox="0 0 200 260" class="lamp-svg">
+      <defs>
+        <radialGradient id="flameGrad" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#FFF3C4"/>
+          <stop offset="45%" stop-color="#F3C25D"/>
+          <stop offset="100%" stop-color="#C9A227"/>
+        </radialGradient>
+      </defs>
+      <!-- flame -->
+      <g class="flame">
+        <path d="M100 40 C 88 65, 84 85, 100 108 C 116 85, 112 65, 100 40 Z" fill="url(#flameGrad)"/>
+        <path d="M100 58 C 94 72, 92 84, 100 98 C 108 84, 106 72, 100 58 Z" fill="#7A1B2E" opacity="0.35"/>
+      </g>
+      <!-- wick / base of flame -->
+      <ellipse cx="100" cy="108" rx="7" ry="4" fill="#3A1420"/>
+      <!-- lamp bowl -->
+      <path d="M40 118 C 40 100 70 96 100 96 C 130 96 160 100 160 118 C 160 150 132 172 100 172 C 68 172 40 150 40 118 Z" fill="none" stroke="#C9A227" stroke-width="3.5"/>
+      <!-- lamp bowl highlight -->
+      <path d="M55 118 C 55 106 76 102 100 102" fill="none" stroke="#E8C766" stroke-width="2" opacity="0.7"/>
+      <!-- petal / spout marks around bowl (5-spout pahana) -->
+      <g fill="#C9A227">
+        <path d="M100 172 L 92 190 L 108 190 Z"/>
+        <path d="M56 156 L 40 168 L 52 176 Z"/>
+        <path d="M144 156 L 160 168 L 148 176 Z"/>
+      </g>
+      <!-- stem -->
+      <rect x="94" y="172" width="12" height="46" fill="#C9A227"/>
+      <ellipse cx="100" cy="196" rx="20" ry="6" fill="none" stroke="#C9A227" stroke-width="3"/>
+      <!-- base -->
+      <path d="M60 240 C 60 222 140 222 140 240 C 140 250 60 250 60 240 Z" fill="#C9A227"/>
+      <ellipse cx="100" cy="218" rx="30" ry="7" fill="none" stroke="#C9A227" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <h1 class="names">
+    <span class="name">Umesha Madumini</span>
+    <span class="amp">&amp;</span>
+    <span class="name">Waruna Wakishta</span>
+  </h1>
+
+  <p class="hero-greeting" id="heroGreeting" hidden></p>
+
+  <p class="hero-sub">together with their families, joyfully invite you<br class="br-desktop"> to witness the beginning of their union</p>
+
+  <p class="hero-date">24<span class="dot">·</span>12<span class="dot">·</span>2026</p>
+
+  <div class="countdown" id="countdown" aria-live="polite">
+    <div class="cd-block"><span id="cd-days">00</span><label>Days</label></div>
+    <div class="cd-block"><span id="cd-hours">00</span><label>Hours</label></div>
+    <div class="cd-block"><span id="cd-mins">00</span><label>Minutes</label></div>
+    <div class="cd-block"><span id="cd-secs">00</span><label>Seconds</label></div>
+  </div>
+
+  <a href="#rsvp" class="scroll-cue">Join the Celebration ↓</a>
+</header>
+
+<!-- ============ DIVIDER : BETEL LEAF ============ -->
+<div class="leaf-divider" aria-hidden="true">
+  <svg viewBox="0 0 600 40" preserveAspectRatio="none">
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
+    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+  </svg>
+</div>
+
+<!-- ============ THE COUPLE ============ -->
+<section class="section couple">
+  <p class="section-eyebrow">Our Story</p>
+  <h2 class="section-title">Two Families, One Poruwa</h2>
+  <p class="section-copy">
+    Raised streets apart yet bound by the same soil, Umesha and Waruna will exchange their
+    vows atop the poruwa in the presence of those they hold dearest — carrying forward the
+    rituals of betel, rice and light that have blessed Sri Lankan unions for generations.
+  </p>
+
+  <div class="couple-grid">
+    <div class="couple-card">
+      <div class="ring" aria-hidden="true"></div>
+      <h3>Umesha Madumini</h3>
+      <p class="role">The Bride</p>
+    </div>
+    <div class="couple-glyph" aria-hidden="true">&amp;</div>
+    <div class="couple-card">
+      <div class="ring" aria-hidden="true"></div>
+      <h3>Waruna Wakishta</h3>
+      <p class="role">The Groom</p>
+    </div>
+  </div>
+</section>
+
+<div class="leaf-divider flip" aria-hidden="true">
+  <svg viewBox="0 0 600 40" preserveAspectRatio="none">
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
+    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+  </svg>
+</div>
+
+<!-- ============ EVENT DETAILS ============ -->
+<section class="section events">
+  <p class="section-eyebrow">Save The Date</p>
+  <h2 class="section-title">The Celebrations</h2>
+
+  <div class="event-grid">
+    <div class="event-card">
+      <span class="event-icon" aria-hidden="true">☀︎</span>
+      <h3>Poruwa Ceremony</h3>
+      <p class="event-time">Thursday · 24th December 2026 · 10.00 AM</p>
+      <p class="event-venue">Nelumpokuna Banquet Hall<br>Negombo, Sri Lanka</p>
+    </div>
+    <div class="event-card">
+      <span class="event-icon" aria-hidden="true">✧</span>
+      <h3>Wedding Reception</h3>
+      <p class="event-time">Thursday · 24th December 2026 · 6.30 PM</p>
+      <p class="event-venue">Nelumpokuna Banquet Hall<br>Negombo, Sri Lanka</p>
+    </div>
+  </div>
+  <p class="event-note">Traditional attire is warmly encouraged — think handloom, batik, and osariya.</p>
+</section>
+
+<div class="leaf-divider" aria-hidden="true">
+  <svg viewBox="0 0 600 40" preserveAspectRatio="none">
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
+    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+  </svg>
+</div>
+
+<!-- ============ RSVP ============ -->
+<section class="section rsvp" id="rsvp">
+  <p class="section-eyebrow">Kindly Respond</p>
+  <h2 class="section-title">Will You Celebrate With Us?</h2>
+  <p class="section-copy">Please let us know by <strong>15th November 2026</strong> so we may prepare a seat worthy of you.</p>
+
+  <form class="rsvp-form" id="rsvpForm" autocomplete="off">
+    <div class="field">
+      <label for="guestName">Your Name</label>
+      <input type="text" id="guestName" name="guestName" placeholder="e.g. Kavindi Perera" required />
+    </div>
+
+    <div class="field">
+      <label for="attending">Will you attend?</label>
+      <select id="attending" name="attending" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="yes">Joyfully Accepts</option>
+        <option value="no">Regretfully Declines</option>
+      </select>
+    </div>
+
+    <div class="field" id="partySizeField">
+      <label for="partySize">Who is joining?</label>
+      <select id="partySize" name="partySize" required>
+        <option value="" disabled selected>Select party size</option>
+        <option value="one">Just Me (1 guest)</option>
+        <option value="two">Me &amp; Partner (2 guests)</option>
+        <option value="family">Family (3+ guests)</option>
+      </select>
+    </div>
+
+    <div class="field" id="familyCountField" hidden>
+      <label for="familyCount">How many in your family party?</label>
+      <input type="number" id="familyCount" name="familyCount" min="3" max="15" placeholder="e.g. 4" />
+    </div>
+
+    <div class="field">
+      <label for="message">A Note For The Couple <span class="optional">(optional)</span></label>
+      <textarea id="message" name="message" rows="3" placeholder="Your wishes for Umesha &amp; Waruna..."></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Send My Reply</button>
+
+    <p class="form-note">
+      This form is ready to connect to
+      <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>
+      or any backend of your choice — see the README for a two‑minute setup.
+    </p>
+  </form>
+
+  <div class="rsvp-success" id="rsvpSuccess" hidden>
+    <div class="lamp-small" aria-hidden="true">✦</div>
+    <h3 id="successHeading">Thank You!</h3>
+    <p id="successMessage">Your reply has been recorded. We can't wait to celebrate with you.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-glyph" aria-hidden="true">✦</div>
+  <p>With love &amp; gratitude,<br>Umesha &amp; Waruna</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
