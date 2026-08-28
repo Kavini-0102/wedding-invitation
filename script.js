@@ -1,13 +1,12 @@
 // ============================================================
-// MANDALA GENERATOR
+// MANDALA GENERATOR (used for the four corner medallions)
 // Draws a lace-like radial medallion into an <svg viewBox="0 0 300 300">.
-// Used for the thorana gate panels and the four corner medallions.
 // ============================================================
 function buildMandala(svg, opts) {
   opts = opts || {};
-  const rings = opts.rings || 4;
-  const basePetals = opts.petalsPerRing || 10;
-  const rMax = opts.rMax || 130;
+  const rings = opts.rings || 2;
+  const basePetals = opts.petalsPerRing || 8;
+  const rMax = opts.rMax || 120;
   const ns = "http://www.w3.org/2000/svg";
   const cx = 150, cy = 150;
 
@@ -52,19 +51,25 @@ function buildMandala(svg, opts) {
   svg.appendChild(dot);
 }
 
+(function buildCornerMedallions() {
+  document.querySelectorAll(".corner-motif svg").forEach((svg) => {
+    buildMandala(svg, { rings: 2, petalsPerRing: 8, rMax: 120 });
+  });
+})();
+
 // ============================================================
-// THORANA GATE — opening entrance sequence
-// Twin lattice doors, each bearing half a mandala at the seam,
-// swing open on load (or on tap) to reveal the invitation.
-// Respects prefers-reduced-motion.
+// SANNASA — traditional scroll-decree entrance
+// A rolled ola-leaf/parchment scroll sits tied with a cord and
+// wax seal. The cord loosens, the seal fades, and the two rolled
+// ends unwind outward as the parchment unfurls to reveal the
+// invitation — evoking the sannasa (royal decree scroll) of
+// Sri Lankan tradition. Respects prefers-reduced-motion.
 // ============================================================
-(function gateSequence() {
-  const overlay = document.getElementById("gateOverlay");
+(function sannasaSequence() {
+  const overlay = document.getElementById("sannasaOverlay");
   if (!overlay) return;
 
-  const enterBtn = document.getElementById("gateEnter");
-  const svgLeft = document.getElementById("gateMandalaLeft");
-  const svgRight = document.getElementById("gateMandalaRight");
+  const enterBtn = document.getElementById("sannasaEnter");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reduceMotion) {
@@ -72,32 +77,58 @@ function buildMandala(svg, opts) {
     return;
   }
 
-  document.body.classList.add("gate-active");
-  if (svgLeft) buildMandala(svgLeft, { rings: 4, petalsPerRing: 10, rMax: 130 });
-  if (svgRight) buildMandala(svgRight, { rings: 4, petalsPerRing: 10, rMax: 130 });
+  document.body.classList.add("sannasa-active");
 
-  function openGate() {
+  function openSannasa() {
     overlay.classList.add("opening");
-    document.body.classList.remove("gate-active");
-    setTimeout(() => overlay.classList.add("hidden"), 1600);
+    document.body.classList.remove("sannasa-active");
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+      startPetalField();
+    }, 1700);
   }
 
-  const autoTimer = setTimeout(openGate, 1600);
+  // A brief pause to let the sealed scroll register, then auto-unfurl
+  const autoTimer = setTimeout(openSannasa, 2400);
+
   if (enterBtn) {
     enterBtn.addEventListener("click", () => {
       clearTimeout(autoTimer);
-      openGate();
+      openSannasa();
     });
   }
 })();
 
 // ============================================================
-// CORNER MEDALLIONS
+// AMBIENT PETAL FIELD
+// A handful of drifting petals over the hero, started once the
+// sannasa has opened. Skipped entirely under reduced motion.
 // ============================================================
-(function buildCornerMedallions() {
-  document.querySelectorAll(".corner-motif svg").forEach((svg) => {
-    buildMandala(svg, { rings: 2, petalsPerRing: 8, rMax: 120 });
-  });
+function startPetalField() {
+  const field = document.getElementById("petalField");
+  if (!field) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const glyphs = ["🌸", "🌼", "🌺"];
+  const count = 10;
+  for (let i = 0; i < count; i++) {
+    const petal = document.createElement("span");
+    petal.className = "petal";
+    petal.textContent = glyphs[i % glyphs.length];
+    petal.style.left = `${Math.random() * 100}%`;
+    petal.style.fontSize = `${12 + Math.random() * 10}px`;
+    petal.style.animationDuration = `${9 + Math.random() * 8}s`;
+    petal.style.animationDelay = `${Math.random() * 6}s`;
+    field.appendChild(petal);
+  }
+}
+
+// If the sannasa is skipped (reduced motion), still show a gentle petal field
+(function maybeStartPetalsImmediately() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const overlay = document.getElementById("sannasaOverlay");
+  if (reduceMotion || !overlay) startPetalField();
 })();
 
 // ============================================================

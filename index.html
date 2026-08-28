@@ -8,24 +8,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@500;600&family=Noto+Serif+Sinhala:wght@400;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ============ THORANA GATE — opening entrance ============ -->
-<div class="gate-overlay" id="gateOverlay" aria-hidden="true">
-  <div class="gate-arch"></div>
-  <div class="gate-panel gate-left">
-    <div class="gate-mandala-wrap gate-mandala-left"><svg id="gateMandalaLeft" viewBox="0 0 300 300"></svg></div>
+<!-- ============ SANNASA — scroll-decree entrance ============ -->
+<div class="sannasa-overlay" id="sannasaOverlay" aria-hidden="true">
+  <div class="sannasa-stage">
+    <div class="sannasa-roll sannasa-roll-left" aria-hidden="true"></div>
+    <div class="sannasa-paper" aria-hidden="true"></div>
+    <div class="sannasa-roll sannasa-roll-right" aria-hidden="true"></div>
+    <div class="sannasa-seal-wrap" aria-hidden="true">
+      <div class="sannasa-seal sinhala">උ&amp;ව</div>
+      <div class="sannasa-cord"></div>
+    </div>
   </div>
-  <div class="gate-panel gate-right">
-    <div class="gate-mandala-wrap gate-mandala-right"><svg id="gateMandalaRight" viewBox="0 0 300 300"></svg></div>
-  </div>
-  <button class="gate-enter" id="gateEnter" type="button" aria-label="Open the invitation">
-    <span class="gate-enter-glyph" aria-hidden="true">✦</span>
-    <span>Enter</span>
+  <button class="sannasa-enter" id="sannasaEnter" type="button" aria-label="Unfurl the invitation">
+    <span class="sannasa-enter-glyph" aria-hidden="true">🪔</span>
+    <span>Unfurl the Sannasa</span>
   </button>
 </div>
 
@@ -35,11 +37,18 @@
 <div class="corner-motif corner-bl" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
 <div class="corner-motif corner-br" aria-hidden="true"><svg viewBox="0 0 300 300"></svg></div>
 
+<!-- ambient falling petals live here, injected by script.js -->
+<div class="petal-field" id="petalField" aria-hidden="true"></div>
+
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-pattern" aria-hidden="true"></div>
 
-  <p class="eyebrow">The Wedding Of</p>
+  <p class="eyebrow">
+    <span class="sinhala">ආයුබෝවන්</span>
+    <span class="eyebrow-divider">·</span>
+    Welcome to Our Wedding
+  </p>
 
   <!-- signature element: pahana / traditional oil lamp -->
   <div class="lamp" aria-hidden="true">
@@ -48,32 +57,32 @@
         <radialGradient id="flameGrad" cx="50%" cy="30%" r="70%">
           <stop offset="0%" stop-color="#FFF3C4"/>
           <stop offset="45%" stop-color="#F3C25D"/>
-          <stop offset="100%" stop-color="#C9A227"/>
+          <stop offset="100%" stop-color="#C9922B"/>
         </radialGradient>
       </defs>
       <!-- flame -->
       <g class="flame">
         <path d="M100 40 C 88 65, 84 85, 100 108 C 116 85, 112 65, 100 40 Z" fill="url(#flameGrad)"/>
-        <path d="M100 58 C 94 72, 92 84, 100 98 C 108 84, 106 72, 100 58 Z" fill="#7A1B2E" opacity="0.35"/>
+        <path d="M100 58 C 94 72, 92 84, 100 98 C 108 84, 106 72, 100 58 Z" fill="#8C1F35" opacity="0.35"/>
       </g>
       <!-- wick / base of flame -->
       <ellipse cx="100" cy="108" rx="7" ry="4" fill="#3A1420"/>
       <!-- lamp bowl -->
-      <path d="M40 118 C 40 100 70 96 100 96 C 130 96 160 100 160 118 C 160 150 132 172 100 172 C 68 172 40 150 40 118 Z" fill="none" stroke="#C9A227" stroke-width="3.5"/>
+      <path d="M40 118 C 40 100 70 96 100 96 C 130 96 160 100 160 118 C 160 150 132 172 100 172 C 68 172 40 150 40 118 Z" fill="none" stroke="#C9922B" stroke-width="3.5"/>
       <!-- lamp bowl highlight -->
-      <path d="M55 118 C 55 106 76 102 100 102" fill="none" stroke="#E8C766" stroke-width="2" opacity="0.7"/>
+      <path d="M55 118 C 55 106 76 102 100 102" fill="none" stroke="#E9C878" stroke-width="2" opacity="0.7"/>
       <!-- petal / spout marks around bowl (5-spout pahana) -->
-      <g fill="#C9A227">
+      <g fill="#C9922B">
         <path d="M100 172 L 92 190 L 108 190 Z"/>
         <path d="M56 156 L 40 168 L 52 176 Z"/>
         <path d="M144 156 L 160 168 L 148 176 Z"/>
       </g>
       <!-- stem -->
-      <rect x="94" y="172" width="12" height="46" fill="#C9A227"/>
-      <ellipse cx="100" cy="196" rx="20" ry="6" fill="none" stroke="#C9A227" stroke-width="3"/>
+      <rect x="94" y="172" width="12" height="46" fill="#C9922B"/>
+      <ellipse cx="100" cy="196" rx="20" ry="6" fill="none" stroke="#C9922B" stroke-width="3"/>
       <!-- base -->
-      <path d="M60 240 C 60 222 140 222 140 240 C 140 250 60 250 60 240 Z" fill="#C9A227"/>
-      <ellipse cx="100" cy="218" rx="30" ry="7" fill="none" stroke="#C9A227" stroke-width="3"/>
+      <path d="M60 240 C 60 222 140 222 140 240 C 140 250 60 250 60 240 Z" fill="#C9922B"/>
+      <ellipse cx="100" cy="218" rx="30" ry="7" fill="none" stroke="#C9922B" stroke-width="3"/>
     </svg>
   </div>
 
@@ -99,11 +108,13 @@
   <a href="#rsvp" class="scroll-cue">Join the Celebration ↓</a>
 </header>
 
-<!-- ============ DIVIDER : BETEL LEAF ============ -->
+<!-- ============ DIVIDER : GARLAND ============ -->
 <div class="leaf-divider" aria-hidden="true">
   <svg viewBox="0 0 600 40" preserveAspectRatio="none">
-    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
-    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9922B" stroke-width="1.4"/>
+    <circle cx="300" cy="20" r="6" fill="#8C1F35"/>
+    <circle cx="255" cy="14" r="3.5" fill="#F2A93B"/>
+    <circle cx="345" cy="14" r="3.5" fill="#F2A93B"/>
   </svg>
 </div>
 
@@ -117,15 +128,83 @@
     rituals of betel, rice and light that have blessed Sri Lankan unions for generations.
   </p>
 
+  <!-- original illustrated couple, under a flower arch -->
+  <div class="couple-illustration" aria-hidden="true">
+    <svg viewBox="0 0 320 380" class="couple-svg">
+      <!-- arch -->
+      <path class="arch-vine" d="M18,346 C18,150 90,44 160,44 C230,44 302,150 302,346" fill="none" stroke="#3F6B3E" stroke-width="7" stroke-linecap="round"/>
+      <g class="arch-blooms">
+        <circle cx="20" cy="300" r="8" fill="#F2A93B"/>
+        <circle cx="27" cy="230" r="7" fill="#8C1F35"/>
+        <circle cx="52" cy="160" r="8" fill="#F2A93B"/>
+        <circle cx="92" cy="100" r="7" fill="#E9C878"/>
+        <circle cx="140" cy="58" r="8" fill="#8C1F35"/>
+        <circle cx="180" cy="58" r="8" fill="#F2A93B"/>
+        <circle cx="228" cy="100" r="7" fill="#E9C878"/>
+        <circle cx="268" cy="160" r="8" fill="#8C1F35"/>
+        <circle cx="293" cy="230" r="7" fill="#F2A93B"/>
+        <circle cx="300" cy="300" r="8" fill="#E9C878"/>
+        <path d="M35,265 l10,-14 l10,14 z" fill="#6B9C4F"/>
+        <path d="M112,80 l10,-14 l10,14 z" fill="#6B9C4F"/>
+        <path d="M198,80 l10,-14 l10,14 z" fill="#6B9C4F"/>
+        <path d="M285,265 l10,-14 l10,14 z" fill="#6B9C4F"/>
+      </g>
+
+      <!-- groom -->
+      <g class="figure-groom">
+        <path d="M130,178 L172,178 L182,362 L120,362 Z" fill="#FFFBF2" stroke="#C9922B" stroke-width="1.5"/>
+        <line x1="151" y1="182" x2="151" y2="230" stroke="#C9922B" stroke-width="2"/>
+        <circle cx="151" cy="196" r="2.3" fill="#C9922B"/>
+        <circle cx="151" cy="212" r="2.3" fill="#C9922B"/>
+        <path d="M128,196 C110,206 106,250 116,300 L132,296 C124,254 128,220 138,204 Z" fill="#FFFBF2" stroke="#C9922B" stroke-width="1.5"/>
+        <circle cx="150" cy="140" r="32" fill="#E8B98B"/>
+        <path d="M119,138 C117,110 145,98 151,98 C182,98 184,120 182,140 C170,120 130,120 119,138 Z" fill="#2B1A12"/>
+        <path d="M136,148 q6,6 12,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M158,148 q6,6 12,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M140,160 q10,8 20,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <!-- bride -->
+      <g class="figure-bride">
+        <path d="M178,188 L232,188 L246,362 L166,362 Z" fill="#F3DFAE" stroke="#C9922B" stroke-width="1.5"/>
+        <path d="M206,190 L232,190 L206,362 L192,362 Z" fill="#8C1F35" opacity="0.88"/>
+        <rect x="166" y="352" width="80" height="10" fill="#E9C878"/>
+        <path d="M232,196 C250,210 252,250 240,296 L224,290 C232,254 228,224 214,206 Z" fill="#F3DFAE" stroke="#C9922B" stroke-width="1.5"/>
+        <circle cx="207" cy="150" r="28" fill="#EDC29A"/>
+        <path d="M180,150 C178,124 200,110 207,110 C234,110 236,130 234,150 C224,132 190,132 180,150 Z" fill="#2B1A12"/>
+        <ellipse cx="230" cy="128" rx="12" ry="10" fill="#2B1A12"/>
+        <circle cx="207" cy="123" r="2.6" fill="#8C1F35"/>
+        <circle cx="192" cy="140" r="2.4" fill="#FFFDF8"/>
+        <circle cx="198" cy="132" r="2" fill="#FFFDF8"/>
+        <circle cx="188" cy="148" r="2" fill="#FFFDF8"/>
+        <path d="M195,158 q6,6 12,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M213,158 q6,6 12,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M199,168 q9,7 18,0" fill="none" stroke="#3B241A" stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <!-- embracing arm -->
+      <path d="M172,196 C190,196 196,206 194,222 L182,222 C182,212 178,206 168,206 Z" fill="#FFFBF2" stroke="#C9922B" stroke-width="1.5"/>
+
+      <!-- ground -->
+      <path d="M40,362 q10,-14 20,0" fill="none" stroke="#6B9C4F" stroke-width="3" stroke-linecap="round"/>
+      <path d="M270,362 q10,-14 20,0" fill="none" stroke="#6B9C4F" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+
   <div class="couple-grid">
     <div class="couple-card">
-      <div class="ring" aria-hidden="true"></div>
       <h3>Umesha Madumini</h3>
       <p class="role">The Bride</p>
     </div>
-    <div class="couple-glyph" aria-hidden="true">&amp;</div>
+    <div class="rings-icon" aria-hidden="true">
+      <svg viewBox="0 0 100 60">
+        <circle cx="38" cy="30" r="21" fill="none" stroke="#C9922B" stroke-width="6"/>
+        <circle cx="62" cy="30" r="21" fill="none" stroke="#E9C878" stroke-width="6"/>
+        <path d="M22,18 A21,21 0 0,1 38,9" fill="none" stroke="#FCEBB8" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M46,18 A21,21 0 0,1 62,9" fill="none" stroke="#FCEBB8" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
     <div class="couple-card">
-      <div class="ring" aria-hidden="true"></div>
       <h3>Waruna Wakishta</h3>
       <p class="role">The Groom</p>
     </div>
@@ -135,7 +214,9 @@
 <div class="leaf-divider flip" aria-hidden="true">
   <svg viewBox="0 0 600 40" preserveAspectRatio="none">
     <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
-    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+    <circle cx="300" cy="20" r="6" fill="#8B6914"/>
+    <circle cx="255" cy="14" r="3.5" fill="#E8CE7A"/>
+    <circle cx="345" cy="14" r="3.5" fill="#E8CE7A"/>
   </svg>
 </div>
 
@@ -163,8 +244,38 @@
 
 <div class="leaf-divider" aria-hidden="true">
   <svg viewBox="0 0 600 40" preserveAspectRatio="none">
-    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9A227" stroke-width="1.4"/>
-    <path d="M300 20 C 296 8, 304 8, 300 20 C 296 32, 304 32, 300 20 Z" fill="#7A1B2E"/>
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9922B" stroke-width="1.4"/>
+    <circle cx="300" cy="20" r="6" fill="#8C1F35"/>
+    <circle cx="255" cy="14" r="3.5" fill="#F2A93B"/>
+    <circle cx="345" cy="14" r="3.5" fill="#F2A93B"/>
+  </svg>
+</div>
+
+<!-- ============ VENUE MAP ============ -->
+<section class="section venue-map">
+  <p class="section-eyebrow">Find Your Way</p>
+  <h2 class="section-title">Getting To Fongfa Regency</h2>
+  <p class="section-copy">Ganemulla, Gampaha — tap the button below to open directions on your phone.</p>
+
+  <div class="map-frame">
+    <iframe
+      src="https://www.google.com/maps?q=Fongfa+Regency,+Ganemulla,+Sri+Lanka&output=embed"
+      width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Map to Fongfa Regency, Ganemulla"></iframe>
+  </div>
+
+  <a class="map-directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=Fongfa+Regency,+Ganemulla,+Sri+Lanka" target="_blank" rel="noopener">
+    <span aria-hidden="true">📍</span> Get Directions
+  </a>
+</section>
+
+<div class="leaf-divider flip" aria-hidden="true">
+  <svg viewBox="0 0 600 40" preserveAspectRatio="none">
+    <path d="M0 20 Q150 0 300 20 T600 20" fill="none" stroke="#C9922B" stroke-width="1.4"/>
+    <circle cx="300" cy="20" r="6" fill="#8C1F35"/>
+    <circle cx="255" cy="14" r="3.5" fill="#F2A93B"/>
+    <circle cx="345" cy="14" r="3.5" fill="#F2A93B"/>
   </svg>
 </div>
 
@@ -222,11 +333,13 @@
     <div class="lamp-small" aria-hidden="true">✦</div>
     <h3 id="successHeading">Thank You!</h3>
     <p id="successMessage">Your reply has been recorded. We can't wait to celebrate with you.</p>
+    <p class="sinhala success-blessing">සුභ විවාහයක්! <span class="blessing-en">— may it be a blessed marriage —</span></p>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-glyph" aria-hidden="true">✦</div>
+  <p class="sinhala footer-sinhala">සුභ විවාහයක්!</p>
   <p>With love &amp; gratitude,<br>Umesha &amp; Waruna</p>
 </footer>
 
