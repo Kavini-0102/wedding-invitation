@@ -307,12 +307,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   text-transform: uppercase; color: var(--ink); opacity: 0.6; margin-top: 6px;
 }
 
+.hero-actions{ display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; }
+
 .scroll-cue{
   font-family: var(--utility); font-size: 12px; letter-spacing: 0.2em;
   text-transform: uppercase; text-decoration: none; color: var(--gold-deep);
   border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity 0.2s ease;
 }
 .scroll-cue:hover{ opacity: 0.6; }
+
+.calendar-link{
+  font-family: var(--utility); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; text-decoration: none; color: var(--gold-deep);
+  opacity: 0.75; border-bottom: 1px dashed var(--gold); padding-bottom: 4px;
+  transition: opacity 0.2s ease;
+}
+.calendar-link:hover{ opacity: 1; }
 
 /* ==========================================================
    DIVIDERS
@@ -384,6 +394,46 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .event-time{ font-family: var(--utility); font-size: 12px; letter-spacing: 0.05em; color: var(--gold-deep); margin: 0 0 10px; }
 .event-venue{ margin: 0; opacity: 0.85; }
 .event-note{ margin-top: 30px; font-style: italic; opacity: 0.7; font-size: 16px; }
+
+/* ==========================================================
+   VENUE & MAP
+   ========================================================== */
+.venue{ max-width: 860px; }
+.venue-card{
+  margin-top: 40px; text-align: left;
+  background: linear-gradient(165deg, var(--white) 0%, var(--ivory-2) 140%);
+  border: 1px solid rgba(201,162,39,0.35);
+  border-radius: 12px; overflow: hidden;
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  box-shadow:
+    0 22px 40px rgba(74,63,47,0.12),
+    0 4px 10px rgba(74,63,47,0.06);
+}
+@media (max-width: 700px){ .venue-card{ grid-template-columns: 1fr; } }
+
+.venue-map{ position: relative; min-height: 320px; background: var(--ivory-2); }
+.venue-map iframe{
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block;
+  filter: sepia(8%) saturate(92%);
+}
+
+.venue-details{ padding: 32px 30px; display: flex; flex-direction: column; }
+.pin-icon{ width: 34px; height: auto; margin-bottom: 12px; }
+.venue-details h3{ font-family: var(--display); font-size: 28px; font-weight: 600; margin: 0 0 10px; color: var(--ink); }
+.venue-address{ margin: 0 0 10px; opacity: 0.85; }
+.venue-phone{ margin: 0 0 22px; opacity: 0.85; }
+.venue-phone a{ text-decoration: none; border-bottom: 1px solid var(--gold); }
+
+.venue-actions{ display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+.btn{
+  display: inline-block; font-family: var(--utility); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none; text-align: center;
+  border-radius: 4px; padding: 13px 20px; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary{ background: var(--gold); color: var(--white); border: 1px solid var(--gold); }
+.btn-primary:hover{ background: var(--gold-deep); border-color: var(--gold-deep); }
+.btn-ghost{ background: transparent; color: var(--gold-deep); border: 1px solid rgba(201,162,39,0.5); }
+.btn-ghost:hover{ background: rgba(201,162,39,0.1); }
 
 /* ==========================================================
    RSVP

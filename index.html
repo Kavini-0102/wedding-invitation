@@ -134,6 +134,14 @@
       </g>
     </g>
 
+    <!-- pin marker used on the venue / map section -->
+    <g id="ill-pin">
+      <path d="M40 6 C 22 6 10 20 10 38 C 10 60 40 92 40 92 C 40 92 70 60 70 38 C 70 20 58 6 40 6 Z"
+            fill="#F6EEDD" stroke="#C9A227" stroke-width="3"/>
+      <circle cx="40" cy="38" r="14" fill="none" stroke="#C9A227" stroke-width="3"/>
+      <circle cx="40" cy="38" r="5" fill="#C9A227"/>
+    </g>
+
     <!-- traditional Kandyan wedding couple, silhouette style -->
     <g id="ill-couple">
       <g transform="translate(50 2)">
@@ -200,7 +208,15 @@
     <div class="cd-block"><span id="cd-secs">00</span><label>Seconds</label></div>
   </div>
 
-  <a href="#rsvp" class="scroll-cue">Join the Celebration ↓</a>
+  <div class="hero-actions">
+    <a href="#rsvp" class="scroll-cue">Join the Celebration ↓</a>
+    <a
+      class="calendar-link"
+      id="calendarLink"
+      href="https://www.google.com/calendar/render?action=TEMPLATE&text=Umesha+%26+Waruna%27s+Wedding&dates=20261224T043000Z%2F20261224T163000Z&details=Poruwa+Ceremony+%26+Wedding+Reception+for+Umesha+Madumini+%26+Waruna+Wakishta.+Venue%3A+Rongfa+Regency%2C+No.152%2FA8%2C+Kadawatha+Road%2C+Kossinna+Junction%2C+Ganemulla.&location=Rongfa+Regency%2C+No.152%2FA8%2C+Kadawatha+Road%2C+Kossinna+Junction%2C+Ganemulla%2C+Sri+Lanka"
+      target="_blank" rel="noopener"
+    >+ Add to Calendar</a>
+  </div>
 </header>
 
 <div class="leaf-divider" aria-hidden="true">
@@ -250,13 +266,13 @@
       <svg class="event-icon-svg" viewBox="0 0 100 130" aria-hidden="true"><use href="#ill-lamp"></use></svg>
       <h3>Poruwa Ceremony</h3>
       <p class="event-time">Thursday · 24th December 2026 · 10.00 AM</p>
-      <p class="event-venue">Nelumpokuna Banquet Hall<br>Negombo, Sri Lanka</p>
+      <p class="event-venue">Rongfa Regency<br>Kossinna Junction, Ganemulla, Gampaha</p>
     </div>
     <div class="event-card tilt-card">
       <svg class="event-icon-svg feather-icon" viewBox="0 0 40 62" aria-hidden="true"><use href="#ill-feather"></use></svg>
       <h3>Wedding Reception</h3>
       <p class="event-time">Thursday · 24th December 2026 · 6.30 PM</p>
-      <p class="event-venue">Nelumpokuna Banquet Hall<br>Negombo, Sri Lanka</p>
+      <p class="event-venue">Rongfa Regency<br>Kossinna Junction, Ganemulla, Gampaha</p>
     </div>
   </div>
   <p class="event-note">Traditional attire is warmly encouraged — think handloom, batik, and osariya.</p>
@@ -266,7 +282,48 @@
   <svg viewBox="0 0 40 54" class="betel-divider"><use href="#ill-betel-fan"></use></svg>
 </div>
 
-<!--   <section class="section rsvp" id="rsvp">
+<section class="section venue" id="venue">
+  <p class="section-eyebrow">Find Us</p>
+  <h2 class="section-title">Getting to Rongfa Regency</h2>
+  <p class="section-copy">
+    Both the ceremony and the reception take place at the same venue, so there's no need
+    to travel between events — just settle in for the day.
+  </p>
+
+  <div class="venue-card tilt-card">
+    <div class="venue-map">
+      <iframe
+        title="Map to Rongfa Regency, Ganemulla"
+        src="https://www.google.com/maps?q=Rongfa+Regency,+Kossinna+Junction,+Kadawatha+Road,+Ganemulla,+Sri+Lanka&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="venue-details">
+      <svg class="pin-icon" viewBox="0 0 80 96" aria-hidden="true"><use href="#ill-pin"></use></svg>
+      <h3>Rongfa Regency</h3>
+      <p class="venue-address">No. 152/A8, Kadawatha Road, Kossinna Junction,<br>Ganemulla, Gampaha District, Sri Lanka</p>
+      <p class="venue-phone">Venue line: <a href="tel:+94332251111">033 225 1111</a></p>
+
+      <div class="venue-actions">
+        <a
+          class="btn btn-primary"
+          href="https://www.google.com/maps/dir/?api=1&destination=Rongfa+Regency,+Kossinna+Junction,+Kadawatha+Road,+Ganemulla,+Sri+Lanka"
+          target="_blank" rel="noopener"
+        >Get Directions</a>
+        <a class="btn btn-ghost" href="tel:+94332251111">Call the Venue</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="leaf-divider flip" aria-hidden="true">
+  <svg viewBox="0 0 40 54" class="betel-divider"><use href="#ill-betel-fan"></use></svg>
+</div>
+
+  <section class="section rsvp" id="rsvp">
     <p class="section-eyebrow">Kindly Respond</p>
     <h2 class="section-title">Will You Celebrate With Us?</h2>
     <p class="section-copy">Please let us know by <strong>15th November 2026</strong> so we may prepare a seat worthy of you.</p>
@@ -320,7 +377,7 @@
       <h3 id="successHeading">Thank You!</h3>
       <p id="successMessage">Your reply has been recorded. We can't wait to celebrate with you.</p>
     </div>
-  </section> -->
+  </section>
 
 <footer class="footer">
   <svg class="footer-feather" viewBox="0 0 40 62" aria-hidden="true"><use href="#ill-feather"></use></svg>
