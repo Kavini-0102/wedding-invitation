@@ -245,22 +245,56 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero{
   position: relative;
   min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(201,162,39,0.12), transparent 55%),
+    linear-gradient(180deg, var(--ivory) 0%, var(--ivory-2) 100%);
+}
+
+/* full-bleed background video, sits behind everything in .hero */
+.hero-video{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* if the video file is missing, or hasn't loaded, the .hero background shows instead */
+
+/* ivory/gold wash so the gold text and gold accents stay legible over any footage */
+.hero-video-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(255,252,245,0.62) 0%, rgba(246,238,221,0.55) 45%, rgba(255,252,245,0.82) 100%);
+}
+
+.hero-pattern{
+  position: absolute; inset: 0; z-index: 2; opacity: 0.05;
+  background-image: radial-gradient(var(--gold) 1px, transparent 1.4px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+}
+
+/* everything the guest reads/clicks — raised above the video, overlay and pattern */
+.hero-inner{
+  position: relative;
+  z-index: 3;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 64px 24px 56px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(201,162,39,0.12), transparent 55%),
-    linear-gradient(180deg, var(--ivory) 0%, var(--ivory-2) 100%);
 }
-.hero-pattern{
-  position: absolute; inset: 0; opacity: 0.05;
-  background-image: radial-gradient(var(--gold) 1px, transparent 1.4px);
-  background-size: 30px 30px;
-  mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+
+@media (prefers-reduced-motion: reduce){
+  .hero-video{ display: none; }
 }
 
 .eyebrow{

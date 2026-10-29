@@ -28,6 +28,28 @@
 })();
 
 // ============================================================
+// HERO BACKGROUND VIDEO — graceful fallback if the file is missing
+// ============================================================
+(function heroVideoFallback() {
+  const video = document.getElementById("heroVideo");
+  if (!video) return;
+
+  // if the browser can't load hero-background.mp4/.webm, remove the
+  // <video> so the .hero gradient background shows instead
+  video.addEventListener(
+    "error",
+    () => video.remove(),
+    true // catch errors bubbling up from the <source> children too
+  );
+
+  // some mobile browsers block autoplay even when muted; try once more
+  // on first user interaction, otherwise just leave the poster showing
+  const tryPlay = () => video.play().catch(() => {});
+  tryPlay();
+  document.addEventListener("click", tryPlay, { once: true });
+})();
+
+// ============================================================
 // 3D TILT EFFECT — cards & the oil lamp respond to the cursor
 // ============================================================
 (function tiltEffect() {
